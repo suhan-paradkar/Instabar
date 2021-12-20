@@ -59,6 +59,7 @@ android {
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+	    signingConfig signingConfigs.debug
         }
 
         release {
@@ -68,6 +69,15 @@ android {
     }
 
     flavorDimensions "repo"
+
+    signingConfigs {
+        debug {
+            storeFile file('dev_keystore.jks')
+            keyAlias 'alias'
+            storePassword 'xrj45yWGLbsO7W0v'
+            keyPassword 'xrj45yWGLbsO7W0v'
+        }
+    }
 
     productFlavors {
         github {
@@ -113,32 +123,8 @@ android {
             // def versionCode = variant.versionCode
             def flavor = variant.flavorName
 
-            def flavorBuiltType = "${flavor}_${builtType}"
-            def suffix
-            // For x86 and x86_64, the versionNames are already overridden
-            if (versionName.contains(flavorBuiltType)) {
-                suffix = "${versionName}"
-            } else {
-                suffix = "${versionName}-${flavorBuiltType}" // eg. 19.1.0-github_debug or release
-            }
-            if (builtType.toString() == 'release' && project.hasProperty("pre")) {
-                buildConfigField("boolean", "isPre", "true")
-
-                flavorBuiltType = "${getGitHash()}-${flavor}"
-
-                // For x86 and x86_64, the versionNames are already overridden
-                if (versionName.contains(flavorBuiltType)) {
-                    suffix = "${versionName}"
-                } else {
-                    // append latest commit short hash for pre-release
-                    suffix = "${versionName}.${flavorBuiltType}" // eg. 19.1.0.b123456-github
-                }
-            }
-
-            output.versionNameOverride = suffix
             def abi = output.getFilter(com.android.build.OutputFile.ABI)
-            // println(abi + ", " + versionName + ", " + flavor + ", " + builtType + ", " + suffix)
-            outputFileName = abi == null ? "barinsta_${suffix}.apk" : "barinsta_${suffix}_${abi}.apk"
+            outputFileName = abi == null ? "Instabar.apk" : "Instabar_${abi}.apk"
         }
     }
 

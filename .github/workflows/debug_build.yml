@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - master
+      - android-10
   pull_request:
     branches:
       - master
+      - android-10
 
 jobs:
   build:
@@ -17,8 +19,38 @@ jobs:
     - name: Build
       run: |
         ./gradlew assembleDebug
-    - name: Store generated APK file
+    - name: Store generated universal APK file
       uses: actions/upload-artifact@v2
       with:
-        name: Instabar
-        path: ./app/build/outputs/apk/debug
+        name: Instabar-app-universal
+        path: |
+            ./app/build/outputs/apk/debug/Instabar.apk
+            ./app/build/outputs/apk/debug/output-metadata.json
+    - name: Store generated arm64-v8a APK file
+      uses: actions/upload-artifact@v2
+      with:
+        name: Instabar-app-arm64-v8a
+        path: |
+          ./app/build/outputs/apk/debug/Instabar_arm64-v8a.apk
+          ./app/build/outputs/apk/debug/output-metadata.json
+    - name: Store generated armeabi-v7a APK file
+      uses: actions/upload-artifact@v2
+      with:
+        name: Instabar-app-armeabi-v7a
+        path: |
+          ./app/build/outputs/apk/debug/Instabar_armeabi-v7a.apk
+          ./app/build/outputs/apk/debug/output-metadata.json
+    - name: Store generated x86_64 APK file
+      uses: actions/upload-artifact@v2
+      with:
+        name: Instabar-app-x86_64
+        path: |
+          ./app/build/outputs/apk/debug/Instabar_x86_64.apk
+          ./app/build/outputs/apk/debug/output-metadata.json
+    - name: Store generated x86 APK file
+      uses: actions/upload-artifact@v2
+      with:
+        name: Instabar-app-x86
+        path: |
+          ./app/build/outputs/apk/debug/Instabar_x86.apk
+          ./app/build/outputs/apk/debug/output-metadata.json

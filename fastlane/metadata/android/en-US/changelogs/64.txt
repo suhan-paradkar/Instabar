@@ -1,3 +1,0 @@
-Sharing, download via SAF, and various improvements/bug fixes!
-
-For details see https://github.com/austinhuang0131/barinsta/releases/tag/v19.2.3

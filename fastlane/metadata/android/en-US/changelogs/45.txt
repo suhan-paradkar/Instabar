@@ -1,3 +1,0 @@
-* You can now upload images in DM
-* You can now like messages
-* Various bug fixes
