@@ -28,7 +28,8 @@
         <activity
             android:name=".activities.MainActivity"
             android:launchMode="singleTop"
-            android:taskAffinity=".Main">
+            android:taskAffinity=".Main"
+	    android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
