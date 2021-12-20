@@ -14,16 +14,16 @@ def getGitHash = { ->
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId 'awais.instagrabber'
 
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
 
-        versionCode 65
-        versionName '19.2.4'
+        versionCode 66
+        versionName '19.2.5'
 
         multiDexEnabled true
 
