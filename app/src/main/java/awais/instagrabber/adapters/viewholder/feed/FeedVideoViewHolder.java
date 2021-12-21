@@ -43,7 +43,7 @@ public class FeedVideoViewHolder extends FeedItemViewHolder {
     private final DefaultDataSourceFactory dataSourceFactory;
 
     private final LayoutPostViewBottomBinding bottom;
-    private CacheDataSource.Factory cacheDataSourceFactor;
+    private CacheDataSource.Factory cacheDataSourceFactory;
     private Media media;
 
     // private final Runnable loadRunnable = new Runnable() {
