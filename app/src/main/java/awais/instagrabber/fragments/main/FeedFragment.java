@@ -280,6 +280,7 @@ public class FeedFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     @Override
     public void onDestroyView() {
+	super.onDestroyView();
 	if (root != null) {
 	    root = null;
 	}
