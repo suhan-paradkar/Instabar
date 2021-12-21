@@ -25,7 +25,6 @@ import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.audio.AudioListener;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
@@ -57,7 +56,7 @@ public class VideoPlayerViewHelper implements Player.EventListener {
     private SimpleExoPlayer player;
     private AppCompatImageButton mute;
 
-    private final AudioListener audioListener = new AudioListener() {
+    private final Player.Listener audioListener = new Player.Listener() {
         @Override
         public void onVolumeChanged(final float volume) {
             updateMuteIcon(volume);
