@@ -124,7 +124,7 @@ android {
             def flavor = variant.flavorName
 
             def abi = output.getFilter(com.android.build.OutputFile.ABI)
-            outputFileName = abi == null ? "Instabar.apk" : "Instabar_${abi}.apk"
+            outputFileName = new File("Instabar_" + (abi ? abi : "universal" + ".apk")
         }
     }
 
