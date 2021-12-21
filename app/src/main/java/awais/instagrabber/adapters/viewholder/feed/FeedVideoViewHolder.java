@@ -11,7 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.cache.CacheDataSourceFactory;
+import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
+import com.google.android.exoplayer2.upstream.cache.CacheDataSource.Factory;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class FeedVideoViewHolder extends FeedItemViewHolder {
     private final DefaultDataSourceFactory dataSourceFactory;
 
     private final LayoutPostViewBottomBinding bottom;
-    private CacheDataSourceFactory cacheDataSourceFactory;
+    private CacheDataSource.Factory cacheDataSourceFactory;
     private Media media;
 
     // private final Runnable loadRunnable = new Runnable() {
@@ -64,7 +65,7 @@ public class FeedVideoViewHolder extends FeedItemViewHolder {
         dataSourceFactory = new DefaultDataSourceFactory(context, "instagram");
         final SimpleCache simpleCache = Utils.getSimpleCacheInstance(context);
         if (simpleCache != null) {
-            cacheDataSourceFactory = new CacheDataSourceFactory(simpleCache, dataSourceFactory);
+            cacheDataSourceFactory = new CacheDataSource.Factory(simpleCache, dataSourceFactory);
         }
     }
 
