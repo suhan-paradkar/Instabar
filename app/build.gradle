@@ -210,7 +210,7 @@ dependencies {
 
     implementation "ru.gildor.coroutines:kotlin-coroutines-okhttp:1.0"
 
-    implementation 'com.facebook.fresco:fresco:2.5.0'
+    implementation 'com.facebook.fresco:fresco:2.6.0'
     implementation 'com.facebook.fresco:animated-webp:2.6.0'
     implementation 'com.facebook.fresco:webpsupport:2.6.0'
 
