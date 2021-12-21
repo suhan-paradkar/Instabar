@@ -132,6 +132,13 @@ class StoryViewerFragment : Fragment() {
         return root
     }
 
+    override fun onDestroyView() {
+	super.onDestroyView()
+	if (root != null) {
+	    root = null;
+	}
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         if (!shouldRefresh) return
         init()
