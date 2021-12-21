@@ -119,11 +119,6 @@ public class DirectItemVoiceMediaViewHolder extends DirectItemViewHolder {
                     }
                 }
             }
-
-            @Override
-            public void onPlayerError(final ExoPlaybackException error) {
-                Log.e(TAG, "onPlayerError: ", error);
-            }
         });
         final ProgressiveMediaSource.Factory sourceFactory = new ProgressiveMediaSource.Factory(dataSourceFactory);
         final MediaItem mediaItem = MediaItem.fromUri(audio.getAudioSrc());

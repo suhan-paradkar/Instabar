@@ -148,7 +148,7 @@ public class VideoPlayerViewHelper implements Player.EventListener {
                 .setLooper(Looper.getMainLooper())
                 .build();
         player.addListener(this);
-        player.addAudioListener(audioListener);
+        player.addListener(audioListener);
         player.setVolume(initialVolume);
         player.setPlayWhenReady(true);
         player.setRepeatMode(Player.REPEAT_MODE_ALL);
@@ -276,11 +276,6 @@ public class VideoPlayerViewHelper implements Player.EventListener {
             return;
         }
         videoPlayerCallback.onPause();
-    }
-
-    @Override
-    public void onPlayerError(@NonNull final ExoPlaybackException error) {
-        Log.e(TAG, "onPlayerError", error);
     }
 
     private void toggleMute() {

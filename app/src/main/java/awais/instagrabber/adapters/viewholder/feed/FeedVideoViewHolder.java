@@ -65,7 +65,7 @@ public class FeedVideoViewHolder extends FeedItemViewHolder {
         dataSourceFactory = new DefaultDataSourceFactory(context, "instagram");
         final SimpleCache simpleCache = Utils.getSimpleCacheInstance(context);
         if (simpleCache != null) {
-            cacheDataSourceFactory = new CacheDataSource.Factory(simpleCache, dataSourceFactory);
+            cacheDataSourceFactory = new CacheDataSource.Factory;
         }
     }
 
