@@ -43,7 +43,7 @@ public class FeedVideoViewHolder extends FeedItemViewHolder {
     private final DefaultDataSourceFactory dataSourceFactory;
 
     private final LayoutPostViewBottomBinding bottom;
-    private CacheDataSource.Factory cacheDataSourceFactory;
+    private CacheDataSource.Factory cacheDataSourceFactor;
     private Media media;
 
     // private final Runnable loadRunnable = new Runnable() {
@@ -65,7 +65,7 @@ public class FeedVideoViewHolder extends FeedItemViewHolder {
         dataSourceFactory = new DefaultDataSourceFactory(context, "instagram");
         final SimpleCache simpleCache = Utils.getSimpleCacheInstance(context);
         if (simpleCache != null) {
-            cacheDataSourceFactory = new CacheDataSource.Factory;
+            cacheDataSourceFactory = new CacheDataSource.Factory();
         }
     }
 
