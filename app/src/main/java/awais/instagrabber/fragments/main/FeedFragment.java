@@ -279,6 +279,13 @@ public class FeedFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
     @Override
+    public onDestroyView() {
+	if (root != null) {
+	    root = null;
+	}
+    }
+
+    @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         if (!shouldRefresh) return;
         binding.feedSwipeRefreshLayout.setOnRefreshListener(this);
