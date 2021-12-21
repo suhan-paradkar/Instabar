@@ -3,7 +3,8 @@ package awais.instagrabber.utils
 import android.content.Context
 import com.google.android.exoplayer2.database.ExoDatabaseProvider
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource.Factory
 import com.google.android.exoplayer2.upstream.cache.CacheDataSource
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
@@ -16,7 +17,7 @@ object ExoplayerUtils {
         val simpleCache = SimpleCache(context.cacheDir, cacheEvictor, exoDatabaseProvider)
         val cacheDataSourceFactory = CacheDataSource.Factory()
                 .setCache(simpleCache)
-                .setUpstreamDataSourceFactory(DefaultHttpDataSourceFactory())
+                .setUpstreamDataSourceFactory(DefaultHttpDataSource.Factory())
         return DefaultMediaSourceFactory(cacheDataSourceFactory)
     }
 }
