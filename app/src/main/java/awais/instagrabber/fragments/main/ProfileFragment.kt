@@ -401,7 +401,6 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
     override fun onDestroyView() {
         super.onDestroyView()
         setupPostsDone = false
-	binding = null
     }
 
     private fun shareProfileViaDm() {
