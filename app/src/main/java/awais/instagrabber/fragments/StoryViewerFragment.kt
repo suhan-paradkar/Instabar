@@ -135,7 +135,8 @@ class StoryViewerFragment : Fragment() {
     override fun onDestroyView() {
 	super.onDestroyView()
 	if (root != null) {
-	    root = null;
+	    root = null
+	    binding = null
 	}
     }
 

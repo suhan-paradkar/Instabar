@@ -369,7 +369,7 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
             R.id.restrict -> viewModel.restrictUser()
             R.id.block -> viewModel.blockUser()
             R.id.chaining -> navigateToChaining()
-            R.id.mute_stories -> viewModel.muteStories()
+            R.id.3mute_stories -> viewModel.muteStories()
             R.id.mute_posts -> viewModel.mutePosts()
             R.id.remove_follower -> viewModel.removeFollower()
             R.id.share_link -> shareProfileLink()
@@ -401,6 +401,7 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
     override fun onDestroyView() {
         super.onDestroyView()
         setupPostsDone = false
+	binding = null
     }
 
     private fun shareProfileViaDm() {
