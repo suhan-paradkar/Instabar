@@ -84,7 +84,7 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
     private lateinit var mainActivity: MainActivity
 
     // private lateinit var root: MotionLayout
-    private lateinit var binding: FragmentProfileBinding
+    private lateinit var binding: FragmentProfileBinding?
     private lateinit var appStateViewModel: AppStateViewModel
     private lateinit var viewModel: ProfileFragmentViewModel
 
