@@ -213,12 +213,12 @@ class StoryViewerFragment : Fragment() {
     private fun setupStories() {
         setupListeners()
         val context = context ?: return
-        binding.storiesList.layoutManager =
+        binding?.storiesList.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         storiesAdapter = StoriesAdapter { _, position ->
             storiesViewModel.setMedia(position)
         }
-        binding.storiesList.adapter = storiesAdapter
+        binding?.storiesList.adapter = storiesAdapter
         storiesViewModel.getCurrentStory().observe(fragmentActivity, {
             if (it?.items != null && it.items.size > 1) {
                 val storyMedias = it.items.toMutableList()
@@ -227,14 +227,14 @@ class StoryViewerFragment : Fragment() {
                 storyMedias.set(0, newItem)
                 storiesAdapter!!.submitList(storyMedias)
                 storiesViewModel.setMedia(0)
-                binding.listToggle.isEnabled = true
-                binding.storiesList.visibility = if (Utils.settingsHelper.getBoolean(PreferenceKeys.PREF_STORY_SHOW_LIST)) View.VISIBLE
+                binding?.listToggle.isEnabled = true
+                binding?.storiesList.visibility = if (Utils.settingsHelper.getBoolean(PreferenceKeys.PREF_STORY_SHOW_LIST)) View.VISIBLE
                 else View.GONE
             }
             else {
                 if (it?.items != null) storiesViewModel.setMedia(0)
-                binding.listToggle.isEnabled = false
-                binding.storiesList.visibility = View.GONE
+                binding?.listToggle.isEnabled = false
+                binding?.storiesList.visibility = View.GONE
             }
         })
         storiesViewModel.getDate().observe(fragmentActivity, {
@@ -250,27 +250,27 @@ class StoryViewerFragment : Fragment() {
             storiesAdapter!!.paginate(it)
         })
         storiesViewModel.getOptions().observe(fragmentActivity, {
-            binding.stickers.isEnabled = it.first.size > 0
+            binding?.stickers.isEnabled = it.first.size > 0
         })
     }
 
     private fun setupButtons() {
-        binding.btnDownload.setOnClickListener({ _ -> downloadStory() })
-        binding.btnForward.setOnClickListener({ _ -> storiesViewModel.skip(false) })
-        binding.btnBackward.setOnClickListener({ _ -> storiesViewModel.skip(true) })
-        binding.btnShare.setOnClickListener({ _ -> shareStoryViaDm() })
-        binding.btnReply.setOnClickListener({ _ -> createReplyDialog(null) })
-        binding.stickers.setOnClickListener({ _ -> showStickerMenu() })
-        binding.listToggle.setOnClickListener({ _ ->
-            binding.storiesList.visibility = if (binding.storiesList.visibility == View.GONE) View.VISIBLE
+        binding?.btnDownload.setOnClickListener({ _ -> downloadStory() })
+        binding?.btnForward.setOnClickListener({ _ -> storiesViewModel.skip(false) })
+        binding?.btnBackward.setOnClickListener({ _ -> storiesViewModel.skip(true) })
+        binding?.btnShare.setOnClickListener({ _ -> shareStoryViaDm() })
+        binding?.btnReply.setOnClickListener({ _ -> createReplyDialog(null) })
+        binding?.stickers.setOnClickListener({ _ -> showStickerMenu() })
+        binding?.listToggle.setOnClickListener({ _ ->
+            binding?.storiesList.visibility = if (binding?.storiesList.visibility == View.GONE) View.VISIBLE
             else View.GONE
         })
 
-        TooltipCompat.setTooltipText(binding.btnDownload, getString(R.string.action_download))
-        TooltipCompat.setTooltipText(binding.btnShare, getString(R.string.share))
-        TooltipCompat.setTooltipText(binding.btnReply, getString(R.string.reply_story))
-        TooltipCompat.setTooltipText(binding.stickers, getString(R.string.story_stickers))
-        TooltipCompat.setTooltipText(binding.listToggle, getString(R.string.story_list))
+        TooltipCompat.setTooltipText(binding?.btnDownload, getString(R.string.action_download))
+        TooltipCompat.setTooltipText(binding?.btnShare, getString(R.string.share))
+        TooltipCompat.setTooltipText(binding?.btnReply, getString(R.string.reply_story))
+        TooltipCompat.setTooltipText(binding?.stickers, getString(R.string.story_stickers))
+        TooltipCompat.setTooltipText(binding?.listToggle, getString(R.string.story_list))
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -303,7 +303,7 @@ class StoryViewerFragment : Fragment() {
             storiesViewModel.paginate(isRightSwipe)
         }
         gestureDetector = GestureDetectorCompat(context, SwipeGestureListener(swipeEvent))
-        binding.playerView.setOnTouchListener { _, event -> gestureDetector!!.onTouchEvent(event) }
+        binding?.playerView.setOnTouchListener { _, event -> gestureDetector!!.onTouchEvent(event) }
         val simpleOnGestureListener: SimpleOnGestureListener = object : SimpleOnGestureListener() {
             override fun onFling(
                 e1: MotionEvent,
@@ -326,7 +326,7 @@ class StoryViewerFragment : Fragment() {
                 return false
             }
         }
-        binding.imageViewer.setTapListener(simpleOnGestureListener)
+        binding?.imageViewer.setTapListener(simpleOnGestureListener)
     }
 
     private fun setupMultipage(models: List<Story>?) {
@@ -361,8 +361,8 @@ class StoryViewerFragment : Fragment() {
             }
         })
         if (!models.isEmpty()) {
-            binding.btnBackward.isEnabled = currentFeedStoryIndex != 0
-            binding.btnForward.isEnabled = currentFeedStoryIndex != models.size - 1
+            binding?.btnBackward.isEnabled = currentFeedStoryIndex != 0
+            binding?.btnForward.isEnabled = currentFeedStoryIndex != models.size - 1
             resetView()
         }
     }
@@ -370,7 +370,7 @@ class StoryViewerFragment : Fragment() {
     private fun resetView() {
         val context = context ?: return
         if (menuProfile != null) menuProfile!!.isVisible = false
-        binding.imageViewer.controller = null
+        binding?.imageViewer.controller = null
         releasePlayer()
         val type = options!!.type
         var fetchOptions: StoryViewerOptions? = null
@@ -427,11 +427,11 @@ class StoryViewerFragment : Fragment() {
 
     @Synchronized
     private fun refreshLive(live: Broadcast) {
-        binding.btnDownload.isEnabled = false
-        binding.stickers.isEnabled = false
-        binding.listToggle.isEnabled = false
-        binding.btnShare.isEnabled = false
-        binding.btnReply.isEnabled = false
+        binding?.btnDownload.isEnabled = false
+        binding?.stickers.isEnabled = false
+        binding?.listToggle.isEnabled = false
+        binding?.btnShare.isEnabled = false
+        binding?.btnReply.isEnabled = false
         releasePlayer()
         setupLive(live.dashPlaybackUrl ?: live.dashAbrPlaybackUrl ?: return)
     }
@@ -447,9 +447,9 @@ class StoryViewerFragment : Fragment() {
         profileVisible = currentStory.user?.username != null
         if (menuProfile != null) menuProfile!!.isVisible = profileVisible
 
-        binding.btnDownload.isEnabled = false
-        binding.btnShare.isEnabled = currentStory.canReshare
-        binding.btnReply.isEnabled = currentStory.canReply
+        binding?.btnDownload.isEnabled = false
+        binding?.btnShare.isEnabled = currentStory.canReshare
+        binding?.btnReply.isEnabled = currentStory.canReply
         if (itemType === MediaItemType.MEDIA_TYPE_VIDEO) setupVideo(url) else setupImage(url)
 
         if (options!!.type == StoryViewerOptions.Type.FEED_STORY_POSITION
@@ -478,20 +478,20 @@ class StoryViewerFragment : Fragment() {
     }
 
     private fun setupImage(url: String) {
-        binding.progressView.visibility = View.VISIBLE
-        binding.playerView.visibility = View.GONE
-        binding.imageViewer.visibility = View.VISIBLE
+        binding?.progressView.visibility = View.VISIBLE
+        binding?.playerView.visibility = View.GONE
+        binding?.imageViewer.visibility = View.VISIBLE
         val requestBuilder = ImageRequestBuilder.newBuilderWithSource(Uri.parse(url))
             .setLocalThumbnailPreviewsEnabled(true)
             .setProgressiveRenderingEnabled(true)
             .build()
         val controller: DraweeController = Fresco.newDraweeControllerBuilder()
             .setImageRequest(requestBuilder)
-            .setOldController(binding.imageViewer.controller)
+            .setOldController(binding?.imageViewer.controller)
             .setControllerListener(object : BaseControllerListener<ImageInfo?>() {
                 override fun onFailure(id: String, throwable: Throwable) {
-                    binding.btnDownload.isEnabled = false
-                    binding.progressView.visibility = View.GONE
+                    binding?.btnDownload.isEnabled = false
+                    binding?.progressView.visibility = View.GONE
                 }
 
                 override fun onFinalImageSet(
@@ -499,22 +499,22 @@ class StoryViewerFragment : Fragment() {
                     imageInfo: ImageInfo?,
                     animatable: Animatable?
                 ) {
-                    binding.btnDownload.isEnabled = true
-                    binding.progressView.visibility = View.GONE
+                    binding?.btnDownload.isEnabled = true
+                    binding?.progressView.visibility = View.GONE
                 }
             })
             .build()
-        binding.imageViewer.controller = controller
+        binding?.imageViewer.controller = controller
     }
 
     private fun setupVideo(url: String) {
-        binding.playerView.visibility = View.VISIBLE
-        binding.progressView.visibility = View.GONE
-        binding.imageViewer.visibility = View.GONE
-        binding.imageViewer.controller = null
+        binding?.playerView.visibility = View.VISIBLE
+        binding?.progressView.visibility = View.GONE
+        binding?.imageViewer.visibility = View.GONE
+        binding?.imageViewer.controller = null
         val context = context ?: return
         player = SimpleExoPlayer.Builder(context).build()
-        binding.playerView.player = player
+        binding?.playerView.player = player
         player!!.playWhenReady =
             Utils.settingsHelper.getBoolean(PreferenceKeys.AUTOPLAY_VIDEOS_STORIES)
         val uri = Uri.parse(url)
@@ -529,8 +529,8 @@ class StoryViewerFragment : Fragment() {
                 loadEventInfo: LoadEventInfo,
                 mediaLoadData: MediaLoadData
             ) {
-                binding.btnDownload.isEnabled = true
-                binding.progressView.visibility = View.GONE
+                binding?.btnDownload.isEnabled = true
+                binding?.progressView.visibility = View.GONE
             }
 
             override fun onLoadStarted(
@@ -539,8 +539,8 @@ class StoryViewerFragment : Fragment() {
                 loadEventInfo: LoadEventInfo,
                 mediaLoadData: MediaLoadData
             ) {
-                binding.btnDownload.isEnabled = true
-                binding.progressView.visibility = View.VISIBLE
+                binding?.btnDownload.isEnabled = true
+                binding?.progressView.visibility = View.VISIBLE
             }
 
             override fun onLoadCanceled(
@@ -549,7 +549,7 @@ class StoryViewerFragment : Fragment() {
                 loadEventInfo: LoadEventInfo,
                 mediaLoadData: MediaLoadData
             ) {
-                binding.progressView.visibility = View.GONE
+                binding?.progressView.visibility = View.GONE
             }
 
             override fun onLoadError(
@@ -560,13 +560,13 @@ class StoryViewerFragment : Fragment() {
                 error: IOException,
                 wasCanceled: Boolean
             ) {
-                binding.btnDownload.isEnabled = false
-                binding.progressView.visibility = View.GONE
+                binding?.btnDownload.isEnabled = false
+                binding?.progressView.visibility = View.GONE
             }
         })
         player!!.setMediaSource(mediaSource)
         player!!.prepare()
-        binding.playerView.setOnClickListener { _ ->
+        binding?.playerView.setOnClickListener { _ ->
             if (player != null) {
                 if (player!!.playbackState == Player.STATE_ENDED) player!!.seekTo(0)
                 player!!.playWhenReady =
@@ -576,13 +576,13 @@ class StoryViewerFragment : Fragment() {
     }
 
     private fun setupLive(url: String) {
-        binding.playerView.visibility = View.VISIBLE
-        binding.progressView.visibility = View.GONE
-        binding.imageViewer.visibility = View.GONE
-        binding.imageViewer.controller = null
+        binding?.playerView.visibility = View.VISIBLE
+        binding?.progressView.visibility = View.GONE
+        binding?.imageViewer.visibility = View.GONE
+        binding?.imageViewer.controller = null
         val context = context ?: return
         player = SimpleExoPlayer.Builder(context).build()
-        binding.playerView.player = player
+        binding?.playerView.player = player
         player!!.playWhenReady =
             Utils.settingsHelper.getBoolean(PreferenceKeys.AUTOPLAY_VIDEOS_STORIES)
         val uri = Uri.parse(url)
@@ -596,7 +596,7 @@ class StoryViewerFragment : Fragment() {
                 loadEventInfo: LoadEventInfo,
                 mediaLoadData: MediaLoadData
             ) {
-                binding.progressView.visibility = View.GONE
+                binding?.progressView.visibility = View.GONE
             }
 
             override fun onLoadStarted(
@@ -605,7 +605,7 @@ class StoryViewerFragment : Fragment() {
                 loadEventInfo: LoadEventInfo,
                 mediaLoadData: MediaLoadData
             ) {
-                binding.progressView.visibility = View.VISIBLE
+                binding?.progressView.visibility = View.VISIBLE
             }
 
             override fun onLoadCanceled(
@@ -614,7 +614,7 @@ class StoryViewerFragment : Fragment() {
                 loadEventInfo: LoadEventInfo,
                 mediaLoadData: MediaLoadData
             ) {
-                binding.progressView.visibility = View.GONE
+                binding?.progressView.visibility = View.GONE
             }
 
             override fun onLoadError(
@@ -625,12 +625,12 @@ class StoryViewerFragment : Fragment() {
                 error: IOException,
                 wasCanceled: Boolean
             ) {
-                binding.progressView.visibility = View.GONE
+                binding?.progressView.visibility = View.GONE
             }
         })
         player!!.setMediaSource(mediaSource)
         player!!.prepare()
-        binding.playerView.setOnClickListener { _ ->
+        binding?.playerView.setOnClickListener { _ ->
             if (player != null) {
                 if (player!!.playbackState == Player.STATE_ENDED) player!!.seekTo(0)
                 player!!.playWhenReady =
@@ -683,8 +683,8 @@ class StoryViewerFragment : Fragment() {
         backward: Boolean,
         last: Boolean
     ) {
-        binding.btnBackward.isEnabled = currentFeedStoryIndex != 1 || !backward
-        binding.btnForward.isEnabled = !last
+        binding?.btnBackward.isEnabled = currentFeedStoryIndex != 1 || !backward
+        binding?.btnForward.isEnabled = !last
         currentFeedStoryIndex = if (backward) currentFeedStoryIndex - 1 else currentFeedStoryIndex + 1
         resetView()
     }
@@ -834,7 +834,7 @@ class StoryViewerFragment : Fragment() {
         val data = storiesViewModel.getOptions().value
         if (data == null) return
         val themeWrapper = ContextThemeWrapper(context, R.style.popupMenuStyle)
-        val popupMenu = PopupMenu(themeWrapper, binding.stickers)
+        val popupMenu = PopupMenu(themeWrapper, binding?.stickers)
         val menu = popupMenu.menu
         data.first.map {
             if (it.second != 0) menu.add(0, it.first, 0, it.second)
