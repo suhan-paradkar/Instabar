@@ -166,14 +166,14 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
     }
     private val onBackPressedCallback = object : OnBackPressedCallback(false) {
         override fun handleOnBackPressed() {
-            binding?.postsRecyclerView.endSelection()
+            binding.postsRecyclerView.endSelection()
         }
     }
     private val multiSelectAction = PrimaryActionModeCallback(
         R.menu.multi_select_download_menu,
         object : PrimaryActionModeCallback.CallbacksHelper() {
             override fun onDestroy(mode: ActionMode?) {
-                binding?.postsRecyclerView.endSelection()
+                binding.postsRecyclerView.endSelection()
             }
 
             override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
@@ -182,7 +182,7 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
                     val selectedMedia = this@ProfileFragment.selectedMedia ?: return false
                     val context = context ?: return false
                     DownloadUtils.download(context, selectedMedia)
-                    binding?.postsRecyclerView.endSelection()
+                    binding.postsRecyclerView.endSelection()
                     return true
                 }
                 return false
@@ -339,7 +339,7 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
-        return binding?.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -348,7 +348,7 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
 
     override fun onRefresh() {
         viewModel.refresh()
-        binding?.postsRecyclerView.refresh()
+        binding.postsRecyclerView.refresh()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -380,7 +380,7 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
 
     override fun onResume() {
         super.onResume()
-        mainActivity.setToolbar(binding?.toolbar, this)
+        mainActivity.setToolbar(binding.toolbar, this)
         try {
             val backStackEntry = NavHostFragment.findNavController(this).currentBackStackEntry
             if (backStackEntry != null) {
@@ -442,7 +442,7 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
     }
 
     private fun init() {
-        binding?.swipeRefreshLayout.setOnRefreshListener(this)
+        binding.swipeRefreshLayout.setOnRefreshListener(this)
         disableDm = !isNavRootInCurrentTabs("direct_messages_nav_graph")
         setupHighlights()
         setupObservers()
@@ -461,10 +461,10 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
                 return@observe
             }
             if (currentUserResource.status == Resource.Status.LOADING || profileResource.status == Resource.Status.LOADING) {
-                binding?.swipeRefreshLayout.isRefreshing = true
+                binding.swipeRefreshLayout.isRefreshing = true
                 return@observe
             }
-            binding?.swipeRefreshLayout.isRefreshing = false
+            binding.swipeRefreshLayout.isRefreshing = false
             val currentUser = currentUserResource.data
             val profile = profileResource.data
             val stateUsername = arguments?.getString("username")
@@ -499,11 +499,11 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
         }
         viewModel.profilePicUrl.observe(viewLifecycleOwner) {
             val visibility = if (it.isNullOrBlank()) View.INVISIBLE else View.VISIBLE
-            binding?.header.mainProfileImage.visibility = visibility
-            binding?.header.mainProfileImage.setImageURI(if (it.isNullOrBlank()) null else it)
-            binding?.header.mainProfileImage.setOnClickListener(if (it.isNullOrBlank()) null else onProfilePicClickListener)
+            binding.header.mainProfileImage.visibility = visibility
+            binding.header.mainProfileImage.setImageURI(if (it.isNullOrBlank()) null else it)
+            binding.header.mainProfileImage.setOnClickListener(if (it.isNullOrBlank()) null else onProfilePicClickListener)
         }
-        viewModel.fullName.observe(viewLifecycleOwner) { binding?.header.mainFullName.text = it ?: "" }
+        viewModel.fullName.observe(viewLifecycleOwner) { binding.header.mainFullName.text = it ?: "" }
         viewModel.biography.observe(viewLifecycleOwner, this::setupBiography)
         viewModel.url.observe(viewLifecycleOwner, this::setupProfileURL)
         viewModel.followersCount.observe(viewLifecycleOwner, this::setupFollowers)
@@ -514,33 +514,33 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
             setupMainStatus(it)
         }
         viewModel.isVerified.observe(viewLifecycleOwner) {
-            binding?.header.isVerified.visibility = if (it == true) View.VISIBLE else View.GONE
+            binding.header.isVerified.visibility = if (it == true) View.VISIBLE else View.GONE
         }
         viewModel.isPrivate.observe(viewLifecycleOwner) {
-            binding?.header.isPrivate.visibility = if (it == true) View.VISIBLE else View.GONE
+            binding.header.isPrivate.visibility = if (it == true) View.VISIBLE else View.GONE
         }
         viewModel.isFavorite.observe(viewLifecycleOwner) {
             if (!it) {
-                binding?.header.favChip.setChipIconResource(R.drawable.ic_outline_star_plus_24)
-                binding?.header.favChip.setText(R.string.add_to_favorites)
+                binding.header.favChip.setChipIconResource(R.drawable.ic_outline_star_plus_24)
+                binding.header.favChip.setText(R.string.add_to_favorites)
                 return@observe
             }
-            binding?.header.favChip.setChipIconResource(R.drawable.ic_star_check_24)
-            binding?.header.favChip.setText(R.string.favorite_short)
+            binding.header.favChip.setChipIconResource(R.drawable.ic_star_check_24)
+            binding.header.favChip.setText(R.string.favorite_short)
         }
         viewModel.profileContext.observe(viewLifecycleOwner, this::setupProfileContext)
         viewModel.userHighlights.observe(viewLifecycleOwner) {
-            binding?.header.highlightsList.visibility = if (it.data.isNullOrEmpty()) View.GONE else View.VISIBLE
+            binding.header.highlightsList.visibility = if (it.data.isNullOrEmpty()) View.GONE else View.VISIBLE
             highlightsAdapter?.submitList(it.data)
         }
         viewModel.userStories.observe(viewLifecycleOwner) {
-            binding?.header.mainProfileImage.setStoriesBorder(if (it.data == null) 0 else 1)
+            binding.header.mainProfileImage.setStoriesBorder(if (it.data == null) 0 else 1)
         }
         viewModel.eventLiveData.observe(viewLifecycleOwner) {
             val event = it?.getContentIfNotHandled() ?: return@observe
             when (event) {
                 ShowConfirmUnfollowDialog -> showConfirmUnfollowDialog()
-                is DMButtonState -> binding?.header.btnDM.isEnabled = !event.disabled
+                is DMButtonState -> binding.header.btnDM.isEnabled = !event.disabled
                 is NavigateToThread -> mainActivity.navigateToThread(event.threadId, event.username)
                 is ShowTranslation -> showTranslationDialog(event.result)
             }
@@ -548,24 +548,24 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
     }
 
     private fun showPrivateAccountMessage() {
-        binding?.header.mainFollowers.isClickable = false
-        binding?.header.mainFollowing.isClickable = false
-        binding?.privatePage.visibility = VISIBLE
-        binding?.privatePage.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-        binding?.privatePage1.setImageResource(R.drawable.lock)
-        binding?.privatePage2.setText(R.string.priv_acc)
-        binding?.privatePage.visibility = VISIBLE
-        binding?.privatePage1.visibility = VISIBLE
-        binding?.privatePage2.visibility = VISIBLE
-        binding?.postsRecyclerView.visibility = GONE
-        binding?.swipeRefreshLayout.isRefreshing = false
+        binding.header.mainFollowers.isClickable = false
+        binding.header.mainFollowing.isClickable = false
+        binding.privatePage.visibility = VISIBLE
+        binding.privatePage.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+        binding.privatePage1.setImageResource(R.drawable.lock)
+        binding.privatePage2.setText(R.string.priv_acc)
+        binding.privatePage.visibility = VISIBLE
+        binding.privatePage1.visibility = VISIBLE
+        binding.privatePage2.visibility = VISIBLE
+        binding.postsRecyclerView.visibility = GONE
+        binding.swipeRefreshLayout.isRefreshing = false
     }
 
     private fun setupProfileContext(contextPair: Pair<String?, List<UserProfileContextLink>?>) {
         val (profileContext, contextLinkList) = contextPair
         if (profileContext == null || contextLinkList == null) {
-            binding?.header.profileContext.visibility = GONE
-            binding?.header.profileContext.clearOnMentionClickListeners()
+            binding.header.profileContext.visibility = GONE
+            binding.header.profileContext.clearOnMentionClickListeners()
             return
         }
         var updatedProfileContext: String = profileContext
@@ -573,22 +573,22 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
             if (link.username == null) return@forEachIndexed
             updatedProfileContext = updatedProfileContext.substring(0, link.start + i) + "@" + updatedProfileContext.substring(link.start + i)
         }
-        binding?.header.profileContext.visibility = VISIBLE
-        binding?.header.profileContext.text = updatedProfileContext
-        binding?.header.profileContext.addOnMentionClickListener(onMentionClickListener)
+        binding.header.profileContext.visibility = VISIBLE
+        binding.header.profileContext.text = updatedProfileContext
+        binding.header.profileContext.addOnMentionClickListener(onMentionClickListener)
     }
 
     private fun setupProfileURL(url: String?) {
         if (url.isNullOrBlank()) {
-            binding?.header.mainUrl.visibility = GONE
-            binding?.header.mainUrl.clearOnURLClickListeners()
-            binding?.header.mainUrl.setOnLongClickListener(null)
+            binding.header.mainUrl.visibility = GONE
+            binding.header.mainUrl.clearOnURLClickListeners()
+            binding.header.mainUrl.setOnLongClickListener(null)
             return
         }
-        binding?.header.mainUrl.visibility = VISIBLE
-        binding?.header.mainUrl.text = url
-        binding?.header.mainUrl.addOnURLClickListener { Utils.openURL(context ?: return@addOnURLClickListener, it.originalText.trimAll()) }
-        binding?.header.mainUrl.setOnLongClickListener {
+        binding.header.mainUrl.visibility = VISIBLE
+        binding.header.mainUrl.text = url
+        binding.header.mainUrl.addOnURLClickListener { Utils.openURL(context ?: return@addOnURLClickListener, it.originalText.trimAll()) }
+        binding.header.mainUrl.setOnLongClickListener {
             Utils.copyText(context ?: return@setOnLongClickListener false, url.trimAll())
             return@setOnLongClickListener true
         }
@@ -608,15 +608,15 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
 
     private fun setupBiography(bio: String?) {
         if (bio.isNullOrBlank()) {
-            binding?.header.mainBiography.visibility = View.GONE
-            binding?.header.mainBiography.clearAllAutoLinkListeners()
-            binding?.header.mainBiography.setOnLongClickListener(null)
+            binding.header.mainBiography.visibility = View.GONE
+            binding.header.mainBiography.clearAllAutoLinkListeners()
+            binding.header.mainBiography.setOnLongClickListener(null)
             return
         }
-        binding?.header.mainBiography.visibility = View.VISIBLE
-        binding?.header.mainBiography.text = bio
-        setCommonAutoLinkListeners(binding?.header.mainBiography)
-        binding?.header.mainBiography.setOnLongClickListener {
+        binding.header.mainBiography.visibility = View.VISIBLE
+        binding.header.mainBiography.text = bio
+        setCommonAutoLinkListeners(binding.header.mainBiography)
+        binding.header.mainBiography.setOnLongClickListener {
             val isLoggedIn = viewModel.isLoggedIn.value ?: false
             val options = arrayListOf(Option(getString(R.string.bio_copy), "copy"))
             if (isLoggedIn) {
@@ -682,70 +682,70 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
 
     private fun setupPostsCount(count: Long?) {
         if (count == null) {
-            binding?.header.mainPostCount.visibility = View.GONE
+            binding.header.mainPostCount.visibility = View.GONE
             return
         }
-        binding?.header.mainPostCount.visibility = View.VISIBLE
-        binding?.header.mainPostCount.text = getCountSpan(R.plurals.main_posts_count, abbreviate(count, null), count)
+        binding.header.mainPostCount.visibility = View.VISIBLE
+        binding.header.mainPostCount.text = getCountSpan(R.plurals.main_posts_count, abbreviate(count, null), count)
         if (count >= 1000) {
-            TooltipCompat.setTooltipText(binding?.header.mainPostCount, count.toString(10))
+            TooltipCompat.setTooltipText(binding.header.mainPostCount, count.toString(10))
         }
     }
 
     private fun setupFollowing(count: Long?) {
         if (count == null) {
-            binding?.header.mainFollowing.visibility = View.GONE
+            binding.header.mainFollowing.visibility = View.GONE
             return
         }
         val abbreviate = abbreviate(count, null)
         val span = SpannableStringBuilder(getString(R.string.main_posts_following, abbreviate))
-        binding?.header.mainFollowing.visibility = View.VISIBLE
-        binding?.header.mainFollowing.text = getCountSpan(span, abbreviate)
+        binding.header.mainFollowing.visibility = View.VISIBLE
+        binding.header.mainFollowing.text = getCountSpan(span, abbreviate)
         if (count <= 0) {
-            binding?.header.mainFollowing.setOnClickListener(null)
+            binding.header.mainFollowing.setOnClickListener(null)
             return
         }
-        binding?.header.mainFollowing.setOnClickListener(onFollowingClickListener)
+        binding.header.mainFollowing.setOnClickListener(onFollowingClickListener)
         if (count >= 1000) {
-            TooltipCompat.setTooltipText(binding?.header.mainFollowing, count.toString(10))
+            TooltipCompat.setTooltipText(binding.header.mainFollowing, count.toString(10))
         }
     }
 
     private fun setupFollowers(count: Long?) {
         if (count == null) {
-            binding?.header.mainFollowers.visibility = View.GONE
+            binding.header.mainFollowers.visibility = View.GONE
             return
         }
-        binding?.header.mainFollowers.visibility = View.VISIBLE
-        binding?.header.mainFollowers.text = getCountSpan(R.plurals.main_posts_followers, abbreviate(count, null), count)
+        binding.header.mainFollowers.visibility = View.VISIBLE
+        binding.header.mainFollowers.text = getCountSpan(R.plurals.main_posts_followers, abbreviate(count, null), count)
         if (count <= 0) {
-            binding?.header.mainFollowers.setOnClickListener(null)
+            binding.header.mainFollowers.setOnClickListener(null)
             return
         }
-        binding?.header.mainFollowers.setOnClickListener(onFollowersClickListener)
+        binding.header.mainFollowers.setOnClickListener(onFollowersClickListener)
         if (count >= 1000) {
-            TooltipCompat.setTooltipText(binding?.header.mainFollowers, count.toString(10))
+            TooltipCompat.setTooltipText(binding.header.mainFollowers, count.toString(10))
         }
     }
 
     private fun setupDMButton(currentUser: User?, profile: User?) {
         val visibility = if (disableDm || (currentUser != null && profile?.pk == currentUser.pk)) View.GONE else View.VISIBLE
-        binding?.header.btnDM.visibility = visibility
+        binding.header.btnDM.visibility = visibility
         if (visibility == View.GONE) {
-            binding?.header.btnDM.setOnClickListener(null)
+            binding.header.btnDM.setOnClickListener(null)
             return
         }
-        binding?.header.btnDM.setOnClickListener { viewModel.sendDm() }
+        binding.header.btnDM.setOnClickListener { viewModel.sendDm() }
     }
 
     private fun setupLikedButton(currentUser: User?, profile: User?) {
         val visibility = if (currentUser != null && profile?.pk == currentUser.pk) View.VISIBLE else View.GONE
-        binding?.header.btnLiked.visibility = visibility
+        binding.header.btnLiked.visibility = visibility
         if (visibility == View.GONE) {
-            binding?.header.btnLiked.setOnClickListener(null)
+            binding.header.btnLiked.setOnClickListener(null)
             return
         }
-        binding?.header.btnLiked.setOnClickListener {
+        binding.header.btnLiked.setOnClickListener {
             try {
                 val action = ProfileFragmentDirections.actionToSaved(
                     viewModel.profile.value?.data?.username ?: return@setOnClickListener,
@@ -761,12 +761,12 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
 
     private fun setupTaggedButton(currentUser: User?, profile: User?) {
         val visibility = if (currentUser != null && profile?.pk == currentUser.pk) View.VISIBLE else View.GONE
-        binding?.header.btnTagged.visibility = visibility
+        binding.header.btnTagged.visibility = visibility
         if (visibility == View.GONE) {
-            binding?.header.btnTagged.setOnClickListener(null)
+            binding.header.btnTagged.setOnClickListener(null)
             return
         }
-        binding?.header.btnTagged.setOnClickListener {
+        binding.header.btnTagged.setOnClickListener {
             try {
                 val action = ProfileFragmentDirections.actionToSaved(
                     viewModel.profile.value?.data?.username ?: return@setOnClickListener,
@@ -782,12 +782,12 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
 
     private fun setupSavedButton(currentUser: User?, profile: User?) {
         val visibility = if (currentUser != null && profile?.pk == currentUser.pk) View.VISIBLE else View.GONE
-        binding?.header.btnSaved.visibility = visibility
+        binding.header.btnSaved.visibility = visibility
         if (visibility == View.GONE) {
-            binding?.header.btnSaved.setOnClickListener(null)
+            binding.header.btnSaved.setOnClickListener(null)
             return
         }
-        binding?.header.btnSaved.setOnClickListener {
+        binding.header.btnSaved.setOnClickListener {
             try {
                 val action = ProfileFragmentDirections.actionToSavedCollections().apply { isSaving = false }
                 findNavController().navigate(action)
@@ -799,63 +799,63 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
 
     private fun setupFavButton(currentUser: User?, profile: User?) {
         val visibility = if (currentUser != null && profile?.pk != currentUser.pk) View.VISIBLE else View.GONE
-        binding?.header.btnFollow.visibility = visibility
+        binding.header.btnFollow.visibility = visibility
         if (visibility == View.GONE) {
-            binding?.header.btnFollow.setOnClickListener(null)
+            binding.header.btnFollow.setOnClickListener(null)
             return
         }
-        binding?.header.btnFollow.setOnClickListener { viewModel.toggleFollow(false) }
+        binding.header.btnFollow.setOnClickListener { viewModel.toggleFollow(false) }
     }
 
     private fun setupFavChip(profile: User?, currentUser: User?) {
         val visibility = if (profile?.pk != currentUser?.pk) View.VISIBLE else View.GONE
-        binding?.header.favChip.visibility = visibility
+        binding.header.favChip.visibility = visibility
         if (visibility == View.GONE) {
-            binding?.header.favChip.setOnClickListener(null)
+            binding.header.favChip.setOnClickListener(null)
             return
         }
-        binding?.header.favChip.setOnClickListener { viewModel.toggleFavorite() }
+        binding.header.favChip.setOnClickListener { viewModel.toggleFavorite() }
     }
 
     private fun setupFollowButton(it: FriendshipStatus?) {
         if (it == null) return
         if (it.following) {
-            binding?.header.btnFollow.setText(R.string.unfollow)
-            binding?.header.btnFollow.setChipIconResource(R.drawable.ic_outline_person_add_disabled_24)
+            binding.header.btnFollow.setText(R.string.unfollow)
+            binding.header.btnFollow.setChipIconResource(R.drawable.ic_outline_person_add_disabled_24)
             return
         }
         if (it.outgoingRequest) {
-            binding?.header.btnFollow.setText(R.string.cancel)
-            binding?.header.btnFollow.setChipIconResource(R.drawable.ic_outline_person_add_disabled_24)
+            binding.header.btnFollow.setText(R.string.cancel)
+            binding.header.btnFollow.setChipIconResource(R.drawable.ic_outline_person_add_disabled_24)
             return
         }
-        binding?.header.btnFollow.setText(R.string.follow)
-        binding?.header.btnFollow.setChipIconResource(R.drawable.ic_outline_person_add_24)
+        binding.header.btnFollow.setText(R.string.follow)
+        binding.header.btnFollow.setChipIconResource(R.drawable.ic_outline_person_add_24)
     }
 
     private fun setupMainStatus(it: FriendshipStatus?) {
         if (it == null || (!it.following && !it.followedBy)) {
-            binding?.header.mainStatus.visibility = View.GONE
+            binding.header.mainStatus.visibility = View.GONE
             return
         }
-        binding?.header.mainStatus.visibility = View.VISIBLE
+        binding.header.mainStatus.visibility = View.VISIBLE
         if (it.following && it.followedBy) {
             context?.let { ctx ->
-                binding?.header.mainStatus.chipBackgroundColor = AppCompatResources.getColorStateList(ctx, R.color.green_800)
-                binding?.header.mainStatus.setText(R.string.status_mutual)
+                binding.header.mainStatus.chipBackgroundColor = AppCompatResources.getColorStateList(ctx, R.color.green_800)
+                binding.header.mainStatus.setText(R.string.status_mutual)
             }
             return
         }
         if (it.following) {
             context?.let { ctx ->
-                binding?.header.mainStatus.chipBackgroundColor = AppCompatResources.getColorStateList(ctx, R.color.deep_orange_800)
-                binding?.header.mainStatus.setText(R.string.status_following)
+                binding.header.mainStatus.chipBackgroundColor = AppCompatResources.getColorStateList(ctx, R.color.deep_orange_800)
+                binding.header.mainStatus.setText(R.string.status_following)
             }
             return
         }
         context?.let { ctx ->
-            binding?.header.mainStatus.chipBackgroundColor = AppCompatResources.getColorStateList(ctx, R.color.blue_800)
-            binding?.header.mainStatus.setText(R.string.status_follower)
+            binding.header.mainStatus.chipBackgroundColor = AppCompatResources.getColorStateList(ctx, R.color.blue_800)
+            binding.header.mainStatus.setText(R.string.status_follower)
         }
     }
 
@@ -871,13 +871,13 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
     }
 
     private fun showDefaultMessage() {
-        binding?.header.root.visibility = GONE
-        binding?.swipeRefreshLayout.visibility = GONE
-        binding?.privatePage.visibility = VISIBLE
-        binding?.privatePage1.visibility = VISIBLE
-        binding?.privatePage2.visibility = VISIBLE
-        binding?.privatePage1.setImageResource(R.drawable.ic_outline_info_24)
-        binding?.privatePage2.setText(R.string.no_acc)
+        binding.header.root.visibility = GONE
+        binding.swipeRefreshLayout.visibility = GONE
+        binding.privatePage.visibility = VISIBLE
+        binding.privatePage1.visibility = VISIBLE
+        binding.privatePage2.visibility = VISIBLE
+        binding.privatePage1.setImageResource(R.drawable.ic_outline_info_24)
+        binding.privatePage2.setText(R.string.no_acc)
     }
 
     private fun setupHighlights() {
@@ -887,29 +887,29 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
             val action = ProfileFragmentDirections.actionToStory(options)
             NavHostFragment.findNavController(this).navigate(action)
         }
-        binding?.header.highlightsList.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        binding?.header.highlightsList.adapter = highlightsAdapter
+        binding.header.highlightsList.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        binding.header.highlightsList.adapter = highlightsAdapter
     }
 
     private fun setupPosts(profile: User, currentUser: User?) {
-        binding?.postsRecyclerView.setViewModelStoreOwner(this)
+        binding.postsRecyclerView.setViewModelStoreOwner(this)
             .setLifeCycleOwner(this)
             .setPostFetchService(ProfilePostFetchService(profile, currentUser != null))
             .setLayoutPreferences(layoutPreferences)
             .addFetchStatusChangeListener {
                 AppExecutors.mainThread.execute {
-                    binding?.swipeRefreshLayout.isRefreshing = it
+                    binding.swipeRefreshLayout.isRefreshing = it
                 }
             }
             .setFeedItemCallback(feedItemCallback)
             .setSelectionModeCallback(selectionModeCallback)
             .init()
-        // binding?.postsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        // binding.postsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
         //     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         //         super.onScrolled(recyclerView, dx, dy)
         //         val canScrollVertically = recyclerView.canScrollVertically(-1)
         //         if (!canScrollVertically) {
-        //             (binding?.collapsingToolbarLayout.layoutParams as AppBarLayout.LayoutParams).scrollFlags = 0
+        //             (binding.collapsingToolbarLayout.layoutParams as AppBarLayout.LayoutParams).scrollFlags = 0
         //         }
         //     }
         // })
@@ -1006,7 +1006,7 @@ class ProfileFragment : Fragment(), OnRefreshListener, ConfirmDialogFragmentCall
         val fragment = PostsLayoutPreferencesDialogFragment(Constants.PREF_PROFILE_POSTS_LAYOUT) { preferences ->
             layoutPreferences = preferences
             Handler(Looper.getMainLooper()).postDelayed(
-                { binding?.postsRecyclerView.layoutPreferences = preferences },
+                { binding.postsRecyclerView.layoutPreferences = preferences },
                 200
             )
         }
