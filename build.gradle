@@ -1,6 +1,6 @@
 buildscript {
     ext{
-        kotlin_version = '1.5.20'
+        kotlin_version = '1.6.10'
         nav_version = "2.4.0-rc01"
     }
 
