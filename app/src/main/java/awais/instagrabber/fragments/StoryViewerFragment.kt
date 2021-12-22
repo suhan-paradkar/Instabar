@@ -87,7 +87,7 @@ class StoryViewerFragment : Fragment() {
     private var backStackSavedStateResultLiveData: MutableLiveData<Any?>? = null
     private lateinit var fragmentActivity: AppCompatActivity
     private lateinit var storiesViewModel: StoryFragmentViewModel
-    private lateinit var binding: FragmentStoryViewerBinding?
+    private lateinit var binding: FragmentStoryViewerBinding
 
     @Suppress("UNCHECKED_CAST")
     private val backStackSavedStateObserver = Observer<Any?> { result ->
