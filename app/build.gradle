@@ -172,6 +172,8 @@ dependencies {
     def core_version = "1.7.0"
     implementation "androidx.core:core:$core_version"
 
+    implementation 'io.github.yanndroid:oneui:2.1.1'
+
     // Fragment
     implementation "androidx.fragment:fragment-ktx:1.4.0"
 
