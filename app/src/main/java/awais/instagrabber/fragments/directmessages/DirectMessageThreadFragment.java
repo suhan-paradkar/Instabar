@@ -549,6 +549,7 @@ public class DirectMessageThreadFragment extends Fragment implements DirectReact
     public void onDestroyView() {
         super.onDestroyView();
         cleanup();
+	binding = null;
     }
 
     @Override
