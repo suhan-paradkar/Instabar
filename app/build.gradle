@@ -226,7 +226,7 @@ dependencies {
     implementation 'com.github.ammargitham:uCrop:2.3-non-native'
     implementation 'com.github.ammargitham:android-gpuimage:2.1.1-beta4'
 
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8'
 
     githubImplementation 'io.sentry:sentry-android:5.5.2'
 
