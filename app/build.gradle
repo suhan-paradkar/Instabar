@@ -228,7 +228,7 @@ dependencies {
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 
-    githubImplementation 'io.sentry:sentry-android:5.5.2'
+    githubImplementation 'io.sentry:sentry-android:5.5.3'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
     testImplementation "androidx.test.ext:junit-ktx:1.1.3"
