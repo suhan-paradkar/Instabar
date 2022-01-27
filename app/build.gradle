@@ -173,7 +173,7 @@ dependencies {
     implementation "androidx.core:core:$core_version"
 
     // Fragment
-    implementation "androidx.fragment:fragment-ktx:1.4.0"
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
