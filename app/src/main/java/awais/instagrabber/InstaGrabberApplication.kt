@@ -10,7 +10,6 @@ import awais.instagrabber.utils.*
 import awais.instagrabber.utils.LocaleUtils.currentLocale
 import awais.instagrabber.utils.Utils.settingsHelper
 import awais.instagrabber.utils.extensions.TAG
-import awaisomereport.CrashReporter
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.imagepipeline.core.ImagePipelineConfig
 import java.net.CookieHandler
@@ -23,7 +22,6 @@ class InstaGrabberApplication : Application() {
         super.onCreate()
         CookieHandler.setDefault(NET_COOKIE_MANAGER)
         settingsHelper = SettingsHelper(this)
-        setupCrashReporter()
         setupCloseGuard()
         setupFresco()
         Utils.cacheDir = cacheDir.absolutePath
@@ -40,10 +38,6 @@ class InstaGrabberApplication : Application() {
         }
     }
 
-    private fun setupCrashReporter() {
-        if (BuildConfig.DEBUG) return
-        CrashReporter.getInstance(this).start()
-    }
 
     private fun setupCloseGuard() {
         if (!BuildConfig.DEBUG) return
