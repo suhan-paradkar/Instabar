@@ -34,7 +34,6 @@ import awais.instagrabber.utils.AppExecutors;
 import awais.instagrabber.utils.Constants;
 import awais.instagrabber.utils.CookieUtils;
 import awais.instagrabber.utils.CoroutineUtilsKt;
-import awais.instagrabber.utils.FlavorTown;
 import awais.instagrabber.utils.NavigationHelperKt;
 import awais.instagrabber.utils.ProcessPhoenix;
 import awais.instagrabber.utils.TextUtils;
@@ -284,17 +283,6 @@ public class MorePreferencesFragment extends BasePreferencesFragment {
         }));
 
         screen.addPreference(getDivider(context));
-        screen.addPreference(getPreference(
-                R.string.version,
-                BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")",
-                -1,
-                preference -> {
-                    if (BuildConfig.isPre) return true;
-                    if (activity == null) return false;
-                    FlavorTown.updateCheck(activity, true);
-                    return true;
-                })
-        );
         screen.addPreference(getDivider(context));
 
         final Preference reminderPreference = getPreference(R.string.reminder, R.string.reminder_summary, R.drawable.ic_warning, null);

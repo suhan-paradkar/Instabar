@@ -129,11 +129,6 @@ class MainActivity : BaseLanguageActivity() {
         if (savedInstanceState == null) {
             setupNavigation(true)
         }
-        if (!BuildConfig.isPre) {
-            val checkUpdates = Utils.settingsHelper.getBoolean(PreferenceKeys.CHECK_UPDATES)
-            if (checkUpdates) FlavorTown.updateCheck(this)
-        }
-        FlavorTown.changelogCheck(this)
         ViewModelProvider(this).get(AppStateViewModel::class.java) // Just initiate the App state here
         handleIntent(intent)
         if (isLoggedIn && Utils.settingsHelper.getBoolean(PreferenceKeys.CHECK_ACTIVITY)) {
