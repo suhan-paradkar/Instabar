@@ -19,6 +19,7 @@ import static awais.instagrabber.utils.Utils.settingsHelper;
 
 public final class FlavorTown {
     private static final String TAG = "FlavorTown";
+    private static final UpdateChecker UPDATE_CHECKER = UpdateChecker.getInstance();
     private static final Pattern VERSION_NAME_PATTERN = Pattern.compile("v?(\\d+\\.\\d+\\.\\d+)(?:_?)(\\w*)(?:-?)(\\w*)");
 
     private static boolean checking = false;
