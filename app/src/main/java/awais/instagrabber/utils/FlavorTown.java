@@ -14,13 +14,11 @@ import java.util.regex.Pattern;
 
 import awais.instagrabber.BuildConfig;
 import awais.instagrabber.R;
-import awaisomereport.CrashReporterHelper;
 
 import static awais.instagrabber.utils.Utils.settingsHelper;
 
 public final class FlavorTown {
     private static final String TAG = "FlavorTown";
-    private static final UpdateChecker UPDATE_CHECKER = UpdateChecker.getInstance();
     private static final Pattern VERSION_NAME_PATTERN = Pattern.compile("v?(\\d+\\.\\d+\\.\\d+)(?:_?)(\\w*)(?:-?)(\\w*)");
 
     private static boolean checking = false;
@@ -86,7 +84,6 @@ public final class FlavorTown {
         settingsHelper.putString(Constants.APP_UA, appUa);
         final String browserUa = UserAgentUtils.generateBrowserUA(browserUaCode);
         settingsHelper.putString(Constants.BROWSER_UA, browserUa);
-        AppExecutors.INSTANCE.getDiskIO().execute(() -> CrashReporterHelper.deleteAllStacktraceFiles(context));
         Toast.makeText(context, R.string.updated, Toast.LENGTH_SHORT).show();
         settingsHelper.putInteger(Constants.PREV_INSTALL_VERSION, BuildConfig.VERSION_CODE);
     }

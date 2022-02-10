@@ -38,13 +38,6 @@ public class GeneralPreferencesFragment extends BasePreferencesFragment implemen
         screen.addPreference(getUpdateCheckPreference(context));
         screen.addPreference(getFlagSecurePreference(context));
         screen.addPreference(getSearchFocusPreference(context));
-        final List<Preference> preferences = FlavorSettings
-                .getInstance()
-                .getPreferences(
-                        context,
-                        getChildFragmentManager(),
-                        SettingCategory.GENERAL
-                );
         for (final Preference preference : preferences) {
             screen.addPreference(preference);
         }
