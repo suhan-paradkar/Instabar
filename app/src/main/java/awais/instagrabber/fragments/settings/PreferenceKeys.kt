@@ -6,7 +6,6 @@ object PreferenceKeys {
     const val PREF_ENABLE_DM_AUTO_REFRESH = "enable_dm_auto_refresh"
     const val PREF_ENABLE_DM_AUTO_REFRESH_FREQ_UNIT = "enable_dm_auto_refresh_freq_unit"
     const val PREF_ENABLE_DM_AUTO_REFRESH_FREQ_NUMBER = "enable_dm_auto_refresh_freq_number"
-    const val PREF_ENABLE_SENTRY = "enable_sentry"
     const val PREF_TAB_ORDER = "tab_order"
     const val PREF_SHOWN_COUNT_TOOLTIP = "shown_count_tooltip"
     const val PREF_SEARCH_FOCUS_KEYBOARD = "search_focus_keyboard"

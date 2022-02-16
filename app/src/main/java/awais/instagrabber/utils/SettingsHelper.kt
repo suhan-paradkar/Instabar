@@ -132,7 +132,6 @@ class SettingsHelper(context: Context) {
         PreferenceKeys.PREF_ENABLE_DM_AUTO_REFRESH,
         PreferenceKeys.FLAG_SECURE,
         PreferenceKeys.TOGGLE_KEYWORD_FILTER,
-        PreferenceKeys.PREF_ENABLE_SENTRY,
         PreferenceKeys.HIDE_MUTED_REELS,
         PreferenceKeys.PLAY_IN_BACKGROUND,
         PreferenceKeys.PREF_SHOWN_COUNT_TOOLTIP,

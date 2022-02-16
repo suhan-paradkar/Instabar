@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: "androidx.navigation.safeargs"
 apply plugin: 'kotlin-kapt'
-apply from: 'sentry.gradle'
 
 def getGitHash = { ->
     def stdout = new ByteArrayOutputStream()
@@ -83,7 +82,6 @@ android {
         github {
             dimension "repo"
             // versionNameSuffix "-github" // appended in assemble task
-            buildConfigField("String", "dsn", SENTRY_DSN)
             buildConfigField("boolean", "isPre", "false")
         }
 
