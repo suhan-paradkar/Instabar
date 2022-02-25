@@ -183,7 +183,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.nav_version"
 
     // Room
-    def room_version = "2.4.1"
+    def room_version = "2.4.2"
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-guava:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
@@ -191,7 +191,7 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     // CameraX
-    def camerax_version = "1.1.0-beta01"
+    def camerax_version = "1.1.0-beta02"
     implementation "androidx.camera:camera-camera2:$camerax_version"
     implementation "androidx.camera:camera-lifecycle:$camerax_version"
     implementation "androidx.camera:camera-view:1.1.0-beta01"
