@@ -218,7 +218,7 @@ dependencies {
 
     implementation 'org.apache.commons:commons-imaging:1.0-alpha2'
 
-    implementation 'com.github.skydoves:balloon:1.4.1'
+    implementation 'com.github.skydoves:balloon:1.4.3'
 
     implementation 'com.github.ammargitham:AutoLinkTextViewV2:3.2.0'
     implementation 'com.github.ammargitham:uCrop:2.3-non-native'
@@ -235,7 +235,7 @@ dependencies {
     androidTestImplementation 'androidx.test:core:1.4.0'
     androidTestImplementation 'com.android.support:support-annotations:28.0.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation "androidx.room:room-testing:2.4.1"
+    androidTestImplementation "androidx.room:room-testing:2.4.2"
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
     androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0'
 
