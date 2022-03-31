@@ -165,7 +165,7 @@ dependencies {
     implementation 'androidx.palette:palette:1.0.0'
     implementation 'androidx.documentfile:documentfile:1.0.1'
 
-    implementation 'com.google.guava:guava:31.0.1-android'
+    implementation 'com.google.guava:guava:31.1-android'
 
     def core_version = "1.7.0"
     implementation "androidx.core:core:$core_version"
