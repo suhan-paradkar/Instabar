@@ -1,7 +1,7 @@
 buildscript {
     ext{
         kotlin_version = '1.6.21'
-        nav_version = "2.5.0-alpha01"
+        nav_version = "2.5.0-beta01"
     }
 
     repositories {
