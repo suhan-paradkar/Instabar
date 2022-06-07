@@ -75,7 +75,7 @@ class Login : BaseLanguageActivity(), View.OnClickListener {
         loginBinding.webView.webViewClient = webViewClient
         val webSettings = loginBinding.webView.settings
         webSettings.userAgentString =
-            "Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.101 Mobile Safari/537.36"
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1"
         webSettings.javaScriptEnabled = true
         webSettings.domStorageEnabled = true
         webSettings.setSupportZoom(true)
