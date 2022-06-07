@@ -40,7 +40,7 @@ public class DirectItemVoiceMediaViewHolder extends DirectItemViewHolder {
     private SimpleExoPlayer player;
     private Handler handler;
     private Runnable positionChecker;
-    private Player.EventListener listener;
+    private Player.Listener listener;
 
     public DirectItemVoiceMediaViewHolder(@NonNull final LayoutDmBaseBinding baseBinding,
                                           @NonNull final LayoutDmVoiceMediaBinding binding,
