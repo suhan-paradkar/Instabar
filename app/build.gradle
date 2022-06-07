@@ -167,7 +167,7 @@ dependencies {
 
     implementation 'com.google.guava:guava:31.1-android'
 
-    def core_version = "1.7.0"
+    def core_version = "1.8.0"
     implementation "androidx.core:core:$core_version"
 
     // Fragment
