@@ -40,7 +40,7 @@ public class DirectItemVoiceMediaViewHolder extends DirectItemViewHolder {
     private SimpleExoPlayer player;
     private Handler handler;
     private Runnable positionChecker;
-    private Player.EventListener listener;
+    private Player.Listener listener;
 
     public DirectItemVoiceMediaViewHolder(@NonNull final LayoutDmBaseBinding baseBinding,
                                           @NonNull final LayoutDmVoiceMediaBinding binding,
@@ -97,7 +97,7 @@ public class DirectItemVoiceMediaViewHolder extends DirectItemViewHolder {
                 }
             }
         };
-        player.addListener(listener = new Player.EventListener() {
+        player.addListener(listener = new Player.Listener() {
             @Override
             public void onPlaybackStateChanged(final int state) {
                 if (!audioItemState.isPrepared() && state == Player.STATE_READY) {

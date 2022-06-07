@@ -41,7 +41,7 @@ import awais.instagrabber.R;
 import awais.instagrabber.databinding.LayoutVideoPlayerWithThumbnailBinding;
 import awais.instagrabber.utils.Utils;
 
-public class VideoPlayerViewHelper implements Player.EventListener {
+public class VideoPlayerViewHelper implements Player.Listener {
     private static final String TAG = VideoPlayerViewHelper.class.getSimpleName();
 
     private final Context context;
