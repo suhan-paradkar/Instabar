@@ -97,7 +97,7 @@ public class DirectItemVoiceMediaViewHolder extends DirectItemViewHolder {
                 }
             }
         };
-        player.addListener(listener = new Player.EventListener() {
+        player.addListener(listener = new Player.Listener() {
             @Override
             public void onPlaybackStateChanged(final int state) {
                 if (!audioItemState.isPrepared() && state == Player.STATE_READY) {
